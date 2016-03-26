@@ -1,0 +1,27 @@
+﻿<div ng-controller="myAccountCtrl as ctrl" aria-label="My Account" ng-cloak>
+    <md-content flex layout-padding>
+        <md-card>
+            <md-card-content>
+                <form>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>My Account</h2>
+                            <span flex></span>
+                            <md-button class="md-icon-button" ng-click="ctrl.cancel()" ng-href="#/dashboard">
+                                <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+
+                    <md-content layout-padding>
+                        <div>
+                            <form name="userForm">
+                                <div layout-gt-sm="row">
+                                        <h3>Number of Documents uploaded by me: {{ctrl.NumberofDocumentUploadedByUser}}</h3>
+                                </div>
+                            </form>
+                        </div>
+                    </md-content>
+        </md-card>
+    </md-content>
+</div>

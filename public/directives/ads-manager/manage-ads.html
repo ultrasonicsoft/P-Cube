@@ -1,0 +1,110 @@
+﻿<div ng-controller="adsManagerCtrl as ctrl" aria-label="Manage Ads" ng-cloak>
+    <md-content flex layout-padding>
+        <md-card>
+            <md-card-content>
+                <form>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>Advertisements</h2>
+                            <span flex></span>
+                            <md-button class="md-icon-button" ng-click="ctrl.cancel()" ng-href="#/dashboard">
+                                <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+
+                    <md-content layout-padding>
+                        <div>
+                            <form name="adsForm">
+                                <div layout layout-sm="row">
+                                    <md-card class="col-md-12">
+                                        <md-card-header>
+                                            <h3>Manage First Advertisement Image</h3>
+                                        </md-card-header>
+                                        <md-card-content>
+                                            <div layout layout-sm="row">
+                                                <div md-cols-sm="1">
+                                                    <md-button class="md-raised" ngf-select="ctrl.uploadFirstAdFile($files)" accept="*">Select First Advertisement Image</md-button>
+                                                    <h5> Selected File: {{ctrl.firstAdFile[0].name}} </h5>
+                                                </div>
+                                                <div md-cols-sm="2">
+                                                    <img ng-src="{{ctrl.firstAdFile}}" style="width:20%; height:'auto'">
+                                                </div>
+                                            </div>
+                                        </md-card-content>
+                                    </md-card>
+                                </div>
+                                <div layout layout-sm="row">
+                                    <md-card class="col-md-12">
+                                        <md-card-header>
+                                            <h3>Manage Second Advertisement Image</h3>
+                                        </md-card-header>
+                                        <md-card-content>
+                                            <div layout layout-sm="row">
+                                                <div md-cols-sm="1">
+                                                    <md-button class="md-raised" ngf-select="ctrl.uploadSecondAdFile($files)" accept="*">Select Second Advertisement Image</md-button>
+                                                    <h5> Selected File: {{ctrl.secondAdFile[0].name}} </h5>
+
+                                                </div>
+                                                <div md-cols-sm="2">
+                                                    <img ng-src="{{ctrl.secondAdFile}}" style="width:20%; height:'auto'">
+                                                </div>
+                                            </div>
+                                        </md-card-content>
+                                    </md-card>
+                                </div>
+                                <div layout layout-sm="row">
+                                    <md-card class="col-md-12">
+                                        <md-card-header>
+                                            <h3>Manage Rotating Advertisement Images</h3>
+                                        </md-card-header>
+                                        <md-card-content>
+                                            <div layout layout-sm="row">
+                                                <div md-cols-sm="1">
+                                                    <md-button class="md-raised" ngf-select="ctrl.uploadFiles($files)" multiple accept="image/*">Select Rotating Advertisement Images</md-button>
+                                                </div>
+                                            </div>
+                                            <div layout layout-sm="row">
+                                                <div md-cols-sm="4">
+                                                    <h4>Files:
+                                            <ul>
+                                                <li ng-repeat="f in ctrl.files">
+                                                    {{f.name}}
+                                                </li>
+                                            </ul>
+                                        </h4>
+                                                </div>
+                                            </div>
+
+                                            <div layout-gt-sm="row">
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Advertisement Image
+                                                        </th>
+                                                        <th>Action
+                                                        </th>
+                                                    </tr>
+                                                    <tr ng-repeat="adImage in ctrl.adsImages">
+                                                        <td>
+                                                            <img ng-src="{{adImage}}" style="width:20%; height:'auto'">
+                                                        </td>
+                                                        <td>
+                                                            <md-button ng-click="ctrl.removeAdvImage(adImage)" class="md-warn md-raised md-hue-2">Delete</md-button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </md-card-content>
+                                    </md-card>
+                                </div>
+                            </form>
+                        </div>
+                    </md-content>
+                    <div class="md-actions" layout="row">
+                        <span flex></span>
+                        <md-button class="md-raised md-warn" ng-href="#/dashboard" ng-click="ctrl.cancel()">Cancel</md-button>
+                        <md-button ng-click="ctrl.uploadAdvertisements()" type="submit" class="md-raised md-primary">Upload Advertisements</md-button>
+                    </div>
+        </md-card>
+    </md-content>
+</div>

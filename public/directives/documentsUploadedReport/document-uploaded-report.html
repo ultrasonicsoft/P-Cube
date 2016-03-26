@@ -1,0 +1,53 @@
+﻿<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 1em;
+    }
+    
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    th {
+        background-color: darkblue;
+        color: white;
+    }
+</style>
+<div ng-controller="DocumentsUploadedReportCtrl as ctrl" aria-label="Documents Report" ng-cloak>
+    <md-content flex layout-padding>
+        <md-card>
+            <md-card-content>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Number Of Documents Uploaded By Lawyers - Report</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="ctrl.cancel()" ng-href="#/dashboard">
+                            <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <md-content layout-padding>
+                    <div>
+                        <table>
+                            <tr>
+                                <th> User Name </th>
+                                <th> Number Of Documents Uploaded </th>
+                            </tr>
+                            <tr ng-repeat="row in ctrl.uploadedDocumentsReport">
+                                <td>{{ row.submitter }}</td>
+                                <td>{{ row.TotalDocs }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </md-content>
+        </md-card>
+    </md-content>
+</div>

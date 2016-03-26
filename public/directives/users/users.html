@@ -1,0 +1,52 @@
+﻿<div ng-controller="UsersCtrl as ctrl">
+    <form editable-form name="tableform" onaftersave="ctrl.saveTable()" oncancel="ctrl.cancel()">
+        <!-- table -->
+        <table class="table table-bordered table-hover table-condensed">
+            <tr style="font-weight: bold">
+                <td style="width: 40%">User Name</td>
+                <td style="width: 30%">Password</td>
+                <td style="width: 30%">Admin Role</td>
+                <td style="width: 30%"><span ng-show="tableform.$visible">Action</span></td>
+            </tr>
+            <tr ng-repeat="user in ctrl.users | filter:ctrl.filterUser">
+                <td>
+                    <!-- editable username (text with validation) -->
+                    <span editable-text="user.userName" e-form="tableform">
+                        {{ user.userName || 'empty' }}
+                    </span>
+                </td>
+                <td>
+                    <!-- editable status (select-local) -->
+                    <span editable-text="user.password" e-form="tableform">
+                        ****
+                    </span>
+                </td>
+                <td>
+                    <a href="#" editable-checkbox="user.isAdmin" e-title="Is Admin Role?">
+                        {{ user.isAdmin && "Admin User" || "Normal User" }}
+                    </a>
+                </td>
+                <td>
+                    <button type="button"
+                            ng-show="tableform.$visible"
+                            ng-click="ctrl.deleteUser(user.id)"
+                            class="btn btn-danger pull-right">
+                        Delete User
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <!-- buttons -->
+        <div class="btn-edit">
+            <button type="button" class="btn btn-default" ng-show="!tableform.$visible" ng-click="tableform.$show()">
+                Edit Users
+            </button>
+        </div>
+        <div class="btn-form" ng-show="tableform.$visible">
+            <button type="button" ng-disabled="tableform.$waiting" ng-click="ctrl.addUser()" class="btn btn-default pull-right">Add New User</button>
+            <button type="submit" ng-disabled="tableform.$waiting" class="btn btn-primary">Save Changes</button>
+            <button type="button" ng-disabled="tableform.$waiting" ng-click="tableform.$cancel()" class="btn btn-default">Revert Changes</button>
+        </div>
+    </form>
+</div>

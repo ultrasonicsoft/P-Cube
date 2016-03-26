@@ -1,0 +1,26 @@
+﻿<md-dialog ng-controller="splashscreenCtrl as ctrl" aria-label="Splash screen" ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>OCTLA Expert Deposition Bank</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.close()">
+                    <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-content class="md-padding">
+                <h1 class="md-display-2">Welcome to OCTLA’s Expert Depo Bank</h1>
+                <br>
+                <h4>A resource for depositions, trial transcripts, expert-related pleadings, and impeachment information.</h4>
+                <h4>All documents have been contributed by attorney members and is fully searchable by experts name, type of case, jurisdiction, date, author or keyword.</h4>
+                <h4> As OCTLA members contribute their own depositions to the database, the OCTLA Expert Deposition Bank will grow to include numerous experts representing various disciplines.</h4>
+                <h4> Downloading of materials from the bank is free for attorney members of OCTLA.</h4>
+            </md-content>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button class="md-raised md-primary" ng-click="ctrl.close(true)">Okay!</md-button>
+        </div>
+    </form>
+</md-dialog>

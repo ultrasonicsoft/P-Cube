@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lawyer Document Repository</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="dependencies/html5-boilerplate_v5.1.0/css/normalize.css">
+    <link rel="stylesheet" href="dependencies/html5-boilerplate_v5.1.0/css/main.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="dependencies/bootstrap-3.3.4-dist/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="dependencies/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="dependencies/bootstrap-3.3.4-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="dependencies/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="dependencies/html5-boilerplate_v5.1.0/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+
+    <link rel="stylesheet" href="dependencies/html5-boilerplate_v5.1.0/css/main.css">
+
+    <!-- application specific css files -->
+    <link rel="stylesheet" href="styles/searchCtrl/searchbox.css">
+
+
+    <!-- UI Grid -->
+    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+    <!--<link rel="stylesheet" href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">-->
+    <link rel="stylesheet" href="ui-grid/ui-grid-unstable.css">
+
+    <!-- application specific js files -->
+    <script src="app.js"></script>
+    <script src="directives/register/register.js"></script>
+    <script src="directives/login/login.js"></script>
+    <script src="directives/carousel/carousel.js"></script>
+    <script src="directives/dashboard/dashboard.js"></script>
+    <script src="directives/search-document/SearchDocumentCtrl.js"></script>
+</head>
+
+<body>
+    <header ng-controller="WebShopCtrl">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Lawyer Document Repository</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav" ng-hide="isLoggingRequired">
+                        <li ng-class="{ active: isActive('/dashboard')}"><a href="#/search-document">Search Document</a></li>
+                        <li ng-class="{ active: isActive('/dashboard')}"><a href="#/uploadDocument">Upload Document</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown" ng-hide="isLoggingRequired">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span>
+                                Welcome {{loggedInUserName}}!
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
+                                <li><a href="#"><i class="icon-envelope"></i> Contact Support</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/auth/logout"><i class="icon-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div ng-hide="!isLoggingRequired">
+                        <login></login>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- In production use:
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+        -->
+    <div style="margin-top: 20px">
+        <ng-view></ng-view>
+    </div>
+</body>
+</html>

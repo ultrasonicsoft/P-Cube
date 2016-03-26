@@ -1,0 +1,32 @@
+﻿<md-dialog ng-controller="approveDocumentCtrl as ctrl" aria-label="Approve Document" ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Approve/Reject Document</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout layout-sm="column">
+                    <md-input-container flex>
+                        <label>Approver's comments</label>
+                        <input ng-model="ctrl.approverComments">
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            
+            <md-button class="md-raised md-warn" ng-click="ctrl.approveDocument(false)">Reject Document</md-button>
+
+            <span flex></span>
+
+            <md-button class="md-raised md-primary" ng-click="ctrl.approveDocument(true)">Approve Document</md-button>
+
+        </div>
+    </form>
+</md-dialog>

@@ -1,0 +1,267 @@
+﻿<div ng-controller="DashboardCtrl as ctrl" layout="column" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <!--Refresh toolbar button -->
+            <md-button class="md-icon-button" aria-label="Refresh Documents" ng-click="ctrl.refreshDocuments()">
+                <md-tooltip>Refresh Documents</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Refresh.svg"></md-icon>
+            </md-button>
+
+            <!--Submit New Deposition toolbar button -->
+            <md-button aria-label="Submit New Deposition" ng-click="ctrl.onUploadNewDocument()" ng-href="#/upload-document">
+                <md-tooltip>Submit New Deposition</md-tooltip>
+                Submit New Depo
+            </md-button>
+
+            <!-- Search document toolbar button -->
+            <md-button aria-label="Search Deposition" ng-click="ctrl.showSearchSection=!ctrl.showSearchSection">
+                <md-tooltip>Search Deposition</md-tooltip>
+                Search Depo
+            </md-button>
+
+            <!--Show Tags toolbar button -->
+            <md-button aria-label="Show Tags" ng-click="ctrl.showTags=!ctrl.showTags">
+                <md-tooltip>Show Tags</md-tooltip>
+                Show Tags
+            </md-button>
+
+            <md-menu ng-if="ctrl.isAdmin">
+                <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                    Edit
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="ctrl.editSelectedDocument($event)">
+                            Edit Document
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click="ctrl.updateUsersVisibility(true)">
+                            Manage Users
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click="ctrl.updateCaseTypesVisibility(true)">
+                            Manage Case Types
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+            <md-menu ng-if="ctrl.isAdmin">
+                <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                    Tools & Reports
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-href="#/history">
+                            Show History
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-href="#/documentsUploadedReport">
+                            Number Of Documents Uploaded By Lawyer Report
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-href="#/ads">
+                            Manage Advertisements
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+                <!--<md-menu-divider></md-menu-divider>-->
+                <!--<md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-href="#/ads">
+                            Manage Advertisements
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>-->
+            </md-menu>
+
+
+
+            <span flex></span>
+            <span>Hi {{loggedInUserName}}!</span>
+
+
+            <md-menu>
+                <md-button class="md-icon-button" aria-label="More" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                    <md-icon md-svg-icon="assets/img/icons/more_vert.svg"></md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-href="#/my-account">
+                            My Account
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-href="#/logout">
+                            Sign out
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </md-toolbar>
+
+    <div layout="column" layout-fill layout-align="top center" ng-if="false">
+        <div class="md-actions" layout="row" layout-align="center center">
+            <md-button class="md-raised md-primary" ng-click="ctrl.showAdvanced($event)">
+                <md-tooltip>Submit Document</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Plus_2.svg"></md-icon>
+                Submit
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-click="ctrl.showSearchSection=!ctrl.showSearchSection" aria-label="Search Documents">
+                <md-tooltip>Search Documents</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Search.svg"></md-icon>
+                Search
+            </md-button>
+
+
+            <!--<md-button class="md-fab" ng-click="ctrl.showSearchSection=!ctrl.showSearchSection" aria-label="Search Documents">
+                <md-tooltip>Search documents</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Search.svg"></md-icon>
+            </md-button>-->
+
+            <md-button class="md-raised md-primary" ng-click="ctrl.showTags=!ctrl.showTags">
+                <md-tooltip>Show Tags for selected document</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Bookmark.svg"></md-icon>
+                {{ctrl.showTags?'Hide Tags' : 'Show Tags'}}
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-click="ctrl.refreshDocuments()" aria-label="Refresh Documents">
+                <md-tooltip>Refresh Documents</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Refresh.svg"></md-icon>
+                Refresh
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-href="#/users" ng-if="ctrl.isAdmin" aria-label="Manage Users">
+                <md-tooltip>Manage Users</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Contacts_2.svg"></md-icon>
+                Users
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-href="#/history" ng-if="ctrl.isAdmin" aria-label="Show History">
+                <md-tooltip>Show History</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Contacts_2.svg"></md-icon>
+                History
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-click="ctrl.showRejectedDocuments()" ng-if="ctrl.isAdmin" aria-label="Show Rejected">
+                <md-tooltip>Show History</md-tooltip>
+                <md-icon md-svg-src="assets/img/icons/Contacts_2.svg"></md-icon>
+                {{ctrl.showRejected?'Hide Rejected' : 'Show Rejected'}}
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-href="#/caseTypes" ng-if="ctrl.isAdmin" aria-label="Manage CaseTypes">
+                <md-tooltip>Manage CaseTypes</md-tooltip>
+                Case Types
+            </md-button>
+
+            <md-button class="md-raised md-primary" ng-click="ctrl.editSelectedDocument($event)" ng-if="ctrl.isAdmin" aria-label="Edit Document">
+                <md-tooltip>Edit Document</md-tooltip>
+                Edit
+            </md-button>
+        </div>
+
+
+    </div>
+    <md-content class="md-padding" ng-if="ctrl.showSearchSection">
+        <md-card>
+            <md-card-content>
+
+                <md-chips ng-model="ctrl.tags" placeholder="Search documents by tags" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag"
+                secondary-placeholder="Search documents by tags"></md-chips>
+            </md-card-content>
+            <div class="md-actions" layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ng-click="ctrl.searchDocumentsByTags()" aria-label="Search Documents">
+                    <md-tooltip>Search documents</md-tooltip>
+                    <md-icon md-svg-src="assets/img/icons/Search.svg"></md-icon>
+                    Search Documents
+                </md-button>
+
+                <md-button class="md-raised md-primary" ng-click="ctrl.showSearchSection=false; ctrl.refreshDocuments()" aria-label="Close">
+                    <md-tooltip>Close</md-tooltip>
+                    Close
+                </md-button>
+            </div>
+        </md-card>
+    </md-content>
+
+    <md-content class="md-padding" ng-if="ctrl.showTags">
+        <md-card>
+            <md-card-content>
+                <md-chips ng-model="ctrl.selectedDocumentTags" readonly="!ctrl.isAdmin"></md-chips>
+            </md-card-content>
+            <div class="md-actions" layout="row">
+                <md-button class="md-raised md-primary
+                " ng-click="ctrl.updateDocumentTags()" ng-if="ctrl.isAdmin">
+                    <md-tooltip>Update tags associated with selected document</md-tooltip>
+                    <md-icon md-svg-src="assets/img/icons/Bookmark.svg"></md-icon>
+                    Update Tags
+                </md-button>
+
+                <md-button class="md-raised md-primary" ng-click="ctrl.showTags=false; ctrl.showDataGrid=true;" aria-label="Close">
+                    <md-tooltip>Close</md-tooltip>
+                    Close
+                </md-button>
+            </div>
+        </md-card>
+    </md-content>
+
+    <div class="container" ng-if="ctrl.showCaseTypes">
+        <div class="md-actions" layout="row">
+            <md-button class="md-raised md-primary" ng-click="ctrl.updateCaseTypesVisibility(false)">
+                <md-tooltip>Close</md-tooltip>
+                Close
+            </md-button>
+        </div>
+        <case-types></case-types>
+    </div>
+
+    <div class="container" ng-if="ctrl.showUsers">
+        <div class="md-actions" layout="row">
+            <md-button class="md-raised md-primary" ng-click="ctrl.updateUsersVisibility(false)">
+                <md-tooltip>Close</md-tooltip>
+                Close
+            </md-button>
+        </div>
+        <users></users>
+    </div>
+
+    <!--progress bar-->
+    <div class="container" ng-if="ctrl.isDataLoading">
+        <div class="row">
+            <div layout layout-align="center center">
+                <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                <h4 class="title">Loading data...</h4>
+            </div>
+        </div>
+    </div>
+
+    <div layout="row">
+        <div flex>
+            <div ng-show="ctrl.showDataGrid">
+                <div id="grid1" style="height:100vh;" ui-grid="ctrl.gridOptions" ui-grid-pinning ui-grid-resize-columns ui-grid-auto-resize
+                ui-grid-selection ui-grid-exporter ui-grid-grouping>
+                </div>
+            </div>
+        </div>
+        <div flex="15">
+            
+            <div layout layout-align="center">
+                <h4>Supporting Contributors</h4>
+            </div>
+            <img ng-src="{{ctrl.firstAdFile}}" class="advertisement">
+            <img ng-src="{{ctrl.secondAdFile}}" class="advertisement">
+            <img ng-src="{{ctrl.advImage}}" class="advertisement">
+        </div>
+    </div>
+</div>

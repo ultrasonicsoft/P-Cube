@@ -1,0 +1,26 @@
+﻿<div ng-controller="HistoryCtrl as ctrl" ng-cloak>
+    <div class="md-actions" layout="row">
+        <md-button class="md-raised md-primary" ng-href="#/dashboard">
+            <md-tooltip>Back to dashboard</md-tooltip>
+            Back to Dashboard
+        </md-button>
+    </div>
+
+    <h2>History</h2>
+
+    <md-list>
+        <md-subheader class="md-no-sticky">Document uploaded history</md-subheader>
+        <md-list-item ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="uploadedHistory in ctrl.uploadedHistories">
+            <!--<md-icon md-svg-icon="{{setting.icon}}"></md-icon>-->
+            <md-card class="col-md-12">
+                <md-card-content>
+                    {{ uploadedHistory.description }}
+                </md-card-content>
+            </md-card>
+            <!--<div class="col-md-1">
+                <md-switch class="md-secondary"></md-switch>
+            </div>-->
+            <!--<md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>-->
+        </md-list-item>
+    </md-list>
+</div>

@@ -1,0 +1,244 @@
+﻿<div ng-controller="uploadDocumentCtrl as ctrl" aria-label="Upload New Document" ng-cloak>
+
+    <md-content flex layout-padding>
+        <md-card>
+            <md-card-content>
+                <form>
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>Upload Document</h2>
+                            <span flex></span>
+                            <md-button class="md-icon-button" ng-click="ctrl.cancel()" ng-href="#/dashboard">
+                                <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+                    <md-dialog-content>
+                        <div class="md-dialog-content" ng-show="ctrl.showNewDocumentSection">
+                            <div layout layout-sm="column">
+                                <md-input-container flex>
+                                    <label>First Name of Expert</label>
+                                    <input ng-model="ctrl.document.firstNameOfExpert" />
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Last Name of Expert</label>
+                                    <input ng-model="ctrl.document.lastNameOfExpert">
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Practice Area</label>
+                                    <input ng-model="ctrl.document.practiceArea">
+                                </md-input-container>
+
+                                <md-input-container flex>
+                                    <label>Title</label>
+                                    <md-select ng-model="ctrl.document.selectedSuffix">
+                                        <md-option ng-repeat="suffix in ctrl.suffixes" value="{{suffix}}">
+                                            {{suffix}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+
+                            <div layout layout-sm="column">
+                                <md-datepicker ng-model="ctrl.document.dateTaken" md-placeholder="Date Taken"></md-datepicker>
+                            </div>
+
+                            <div layout layout-sm="column">
+                                <md-input-container flex>
+                                    <label>Hired by</label>
+                                    <md-select ng-model="ctrl.document.selectedOption">
+                                        <md-option ng-repeat="option in ctrl.options" value="{{option}}">
+                                            {{option}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <div layout layout-sm="column">
+                                    <md-input-container flex>
+                                        <label>First Name of Lawyer</label>
+                                        <input ng-model="ctrl.document.firstNameOfLawyer">
+                                    </md-input-container>
+                                    <md-input-container flex>
+                                        <label>Last Name of Lawyer</label>
+                                        <input ng-model="ctrl.document.lastNameOfLawyer">
+                                    </md-input-container>
+                                </div>
+
+                                <md-input-container flex>
+                                    <label>Jurisdiction</label>
+                                    <input ng-model="ctrl.document.jurisdiction">
+                                </md-input-container>
+
+                                <md-input-container flex>
+                                    <label>Case Type</label>
+                                    <!--<md-select ng-model="ctrl.document.selectedCaseType">
+                            <md-option ng-value="caseType" data-ng-repeat="caseType in ctrl.caseTypes">{{caseType}}</md-option>
+                        </md-select>-->
+
+                                    <md-select ng-model="ctrl.document.selectedCaseType">
+                                        <md-option ng-repeat="caseType in ctrl.caseTypes" value="{{caseType.id}}">
+                                            {{caseType.caseType}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                            </div>
+
+                            <!--<div layout layout-sm="column">
+                    <md-input-container flex>
+                        <input type="file" multiple ngf-select ng-model="picFile" name="file" accept="*" ngf-max-size="40MB">
+                        <span class="progress" ng-show="picFile.progress >= 0">
+                            <div style="width:{{picFile.progress}}%"
+                                 ng-bind="picFile.progress + '%'"></div>
+                        </span>
+                        <span ng-show="picFile.result">Upload Successful</span>
+                    </md-input-container>
+                </div>-->
+
+                            <div layout layout-sm="row">
+                                <div md-cols-sm="3">
+                                    <md-button class="md-raised" ngf-select="ctrl.uploadDepositionFile($files)" accept="*">Select Deposition File (required)</md-button>
+                                </div>
+                                <div flex layout layout-align="left center">
+                                    <h4> Selected File: {{ctrl.depositionFile[0].name}} </h4>
+                                </div>
+                            </div>
+
+                            <div layout layout-sm="row">
+                                <div md-cols-sm="4">
+                                    <md-button class="md-raised" ngf-select="ctrl.uploadFiles($files)" multiple accept="*">Select Other Supporting Files (optional)</md-button>
+                                </div>
+                                <div flex>
+                                    <h4>Files:
+                            <ul>
+                                <li ng-repeat="f in ctrl.files">
+                                    {{f.name}}
+                                </li>
+                            </ul>
+                        </h4>
+                                </div>
+                            </div>
+
+                            <md-chips ng-model="ctrl.document.tags" readonly="ctrl.readonly" placeholder="Enter a tag" delete-button-label="Remove Tag"
+                            delete-hint="Press delete to remove tag" secondary-placeholder="+Tag"></md-chips>
+
+                            <div layout layout-sm="column">
+                                <md-input-container flex>
+                                    <label>Lawyer comments about document</label>
+                                    <input ng-model="ctrl.document.lawyerComments">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <div class="md-dialog-content" ng-show="!ctrl.showNewDocumentSection">
+                            <div layout layout-sm="column">
+                                <div flex>
+                                    <h5>First Name of Expert: </h5>
+                                    <h4><b> {{ctrl.document.firstNameOfExpert}}</b </h4>
+                                </div>
+                                <div flex>
+                                    <h5>Last Name of Expert: </h5>
+                                    <h4> <b>{{ctrl.document.lastNameOfExpert}}</b </h4>
+                                </div>
+                                <div flex>
+                                    <h5>Practice Area: </h5>
+                                    <h4> <b> {{ctrl.document.practiceArea}} </b></h4>
+                                </div>
+                                <div flex>
+                                    <h5>Date Taken: </h5>
+                                    <h4> <b> {{ctrl.document.dateTaken | date:"MM/dd/yyyy"}} </b></h4>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <br>
+
+                            <div layout layout-sm="column">
+
+                                <div flex>
+                                    <h5>Hired by: </h5>
+                                    <h4> <b> {{ctrl.document.selectedOption}} </b></h4>
+                                </div>
+
+                                <div flex>
+                                    <h5>First Name of Lawyer: </h5>
+                                    <h4> <b> {{ctrl.document.firstNameOfLawyer}} </b></h4>
+                                </div>
+
+                                <div flex>
+                                    <h5>Last Name of Lawyer: </h5>
+                                    <h4> <b> {{ctrl.document.lastNameOfLawyer}} </b></h4>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <br>
+
+                            <div layout layout-sm="column">
+
+                                <div flex>
+                                    <h5>Jurisdiction: </h5>
+                                    <h4> <b> {{ctrl.document.jurisdiction}} </b></h4>
+                                </div>
+
+                                <div flex>
+                                    <h5>Case Type: </h5>
+                                    <h4> <b> {{ctrl.document.selectedCaseTypeValue}} </b></h4>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <br>
+
+                            <div layout layout-sm="column">
+
+                                <div flex>
+                                    <h5>Selected Deposition File: </h5>
+                                    <h4> <b> {{ctrl.depositionFile[0].name}} </b></h4>
+                                </div>
+
+                                <div flex>
+                                    <h5>Selected Supporting Files: </h5>
+                                    <ul>
+                                        <li ng-repeat="f in ctrl.files">
+                                            <h4> <b>{{f.name}} </h4>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                            <br>
+
+                            <md-chips ng-model="ctrl.document.tags" readonly="true"></md-chips>
+
+                            <md-divider></md-divider>
+                            <br>
+
+                            <div layout layout-sm="column">
+                                <div flex>
+                                    <h5>Lawyer comments about document: </h5>
+                                    <h4> <b> {{ctrl.document.lawyerComments}} </b></h4>
+                                </div>
+                            </div>
+                        </div>
+
+                    </md-dialog-content>
+                    <div layout="row" layout-sm="column" layout-align="end" ng-if="ctrl.showProgressBar">
+                        <h3>Uploading document to server...</h3>
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
+
+                    <div class="md-actions" layout="row">
+                        <md-button class="md-raised md-warn" ng-href="#/dashboard" ng-click="ctrl.cancel()">Cancel</md-button>
+
+                        <span flex></span>
+
+                        <!--<md-button ng-click="ctrl.uploadNewDocument(picFile)" type="submit" class="md-raised md-primary">Save Document</md-button>
+            <md-button ng-click="ctrl.updateDocument(picFile)" class="md-raised md-primary">Update Document</md-button>-->
+                        <md-button ng-click="ctrl.correctDocument()" class="md-warn md-raised md-hue-2" ng-if="!ctrl.showNewDocumentSection">Edit Document</md-button>
+                        <md-button ng-click="ctrl.reviewDocument()" type="submit" class="md-raised md-primary" ng-if="ctrl.showNewDocumentSection">Review</md-button>
+                        <md-button ng-click="ctrl.uploadNewDocument()" type="submit" class="md-raised md-primary" ng-if="!ctrl.showNewDocumentSection">{{ctrl.isEditMode ? 'Update Document' : 'Upload Document'}}</md-button>
+
+                    </div>
+                </form>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

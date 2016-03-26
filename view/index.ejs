@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lawyer Document Repository</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/libs/html5-boilerplate_v5.1.0/css/normalize.css">
+    <link rel="stylesheet" href="/libs/html5-boilerplate_v5.1.0/css/main.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/libs/bootstrap-3.3.4-dist/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="/libs/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/libs/bootstrap-3.3.4-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="/libs/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/libs/javascripts/angular.min.js"></script>
+    <script type="text/javascript" src="/libs/javascripts/angular-resource.min.js"></script>
+    <script type="text/javascript" src="/libs/javascripts/angular-route.min.js"></script>
+    <script type="text/javascript" src="/libs/javascripts/ui-bootstrap-tpls-0.12.1.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/libs/angular-toastr-master/dist/angular-toastr.css" />
+    <script type="text/javascript" src="/libs/angular-toastr-master/dist/angular-toastr.tpls.js"></script>
+    <script type="text/javascript" src="/libs/javascripts/angular-animate.js"></script>
+
+    <link rel="stylesheet" href="/libs/angular-material/angular-material.min.css">
+    <script src="/libs/angular-aria/angular-aria.min.js"></script>
+    <script src="/libs/angular-material/angular-material.min.js"></script>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="/libs/html5-boilerplate_v5.1.0/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>-->
+    <!-- <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>-->
+
+    <link rel="stylesheet" href="/libs/html5-boilerplate_v5.1.0/css/main.css">
+
+    <!-- UI Grid -->
+    <!-- <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>-->
+    <!-- <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>-->
+    <!-- <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>-->
+    <script src="/libs/ui-grid/ui-grid.js"></script>
+    <link rel="stylesheet" href="/libs/ui-grid/ui-grid.css">
+
+	<!-- Ng-Upload -->
+	<!-- shim is needed to support non-HTML5 FormData browsers (IE8-9)-->
+	<script src="/libs/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+	<script src="/libs/ng-file-upload/dist/ng-file-upload.min.js"></script>
+
+	<!-- X-Editable lib -->
+	<link href="/libs/angular-xeditable-0.1.8/css/xeditable.css" rel="stylesheet">
+	<script src="/libs/angular-xeditable-0.1.8/js/xeditable.js"></script>
+
+	
+    <!-- application specific js files -->
+    <script src="/app.js"></script>
+    <script src="/directives/register/register.js"></script>
+    <script src="/directives/login/login.js"></script>
+    <script src="/directives/logout/logout.js"></script>
+    <script src="/directives/carousel/carousel.js"></script>
+    <script src="/directives/dashboard/dashboard.js"></script>
+    <script src="/directives/users/usersCtrl.js"></script>
+    <script src="/directives/case-types/caseTypeCtrl.js"></script>
+    <script src="/directives/history/historyCtrl.js"></script>
+    <script src="/directives/documentsUploadedReport/documentsUploadedReportCtrl.js"></script>
+    <script src="/directives/upload-document/uploadDocumentCtrl.js"></script>
+    <script src="/directives/my-account/myAccountCtrl.js"></script>
+    <script src="/directives/ads-manager/adsManagerCtrl.js"></script>
+    <script src="/directives/approve-document/approveDocumentCtrl.js"></script>
+    <script src="/directives/splashscreen/splashscreenCtrl.js"></script>
+    <script src="/services/loginService.js"></script>
+    <script src="/services/dataService.js"></script>
+	<md-toolbar ng-if="isLoggingRequired">
+                    <div class="md-toolbar-tools">
+                        <h2>
+                            <span>OCTLA Deposition Bank</span>
+                        </h2>
+                        <span flex></span>
+                        <div ng-if="isLoggingRequired">
+                            <login></login>
+                        </div>
+						<div ng-hide="isLoggingRequired">
+							<span class="glyphicon glyphicon-user"></span>
+							<label>Hi {{loggedInUserName}}!</label>
+
+							<md-button class="md-icon-button" ng-href="#/logout">
+								<md-tooltip>Logout</md-tooltip>
+								<md-icon md-svg-icon="assets/img/icons/MinusFilled.svg"></md-icon>
+							</md-button>
+						</div>
+                    </div>
+                </md-toolbar>
+</head>
+
+<body>
+    <div layout="row" layout-sm="column" layout-align="end" ng-if="showProgressBar">
+        <h2>Logging in...</h2>
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    
+    <header ng-controller="WebShopCtrl">
+       
+    </header>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- In production use:
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+        -->
+    <div>
+        <ng-view></ng-view>
+    </div>
+</body>
+</html>
