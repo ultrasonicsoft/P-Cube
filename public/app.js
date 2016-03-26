@@ -6,7 +6,6 @@ var mainApp = angular.module('myApp',
         'ngAnimate',
         'ngMaterial',
         'toastr',
-        'ui.bootstrap',
         'ui.grid',
         'ui.grid.resizeColumns',
         'ui.grid.selection',
@@ -19,7 +18,7 @@ var mainApp = angular.module('myApp',
         'xeditable'
     ])
     .controller('WebShopCtrl',
-        function ($rootScope, $scope, $mdSidenav, $log, $modal) {
+        function ($rootScope, $scope, $mdSidenav, $log) {
             $rootScope.isLoggingRequired = true;
             $rootScope.showProgressBar = false;
 
