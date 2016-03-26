@@ -71,3 +71,7 @@ form .progress {
     width: 100%;
     }
     
+    .grid {
+  width: 99%;
+  height: 100%;
+}
